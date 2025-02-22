@@ -18,8 +18,10 @@ for dir in "${directories[@]}"; do
   VERSION=$(head -n 1 "Dockerfile" | cut -d '=' -f2)
   echo "Version found in $VERSION"
   
-  docker build --no-cache --compress -t "wolxxxy/php$dir:$VERSION" .
-  docker push "wolxxxy/php$dir:$VERSION" "wolxxxy/php$dir:latest"
+  docker build --compress -t "wolxxxy/php$dir:$VERSION" .
+  docker build --compress -t "wolxxxy/php$dir:latest" .
+  docker push "wolxxxy/php$dir:$VERSION"
+  docker push "wolxxxy/php$dir:latest"
 
   echo "$dir completed.";
 done
