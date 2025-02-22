@@ -4,7 +4,7 @@ ARG ubuntuVersion="24.04"
 FROM ubuntu:$ubuntuVersion
 
 ARG nodeVersion="22"
-ARG phpVersion="8.4"
+ARG phpVersion="7.4"
 
 RUN apt update && apt install tzdata -y
 ENV TZ="Europe/Berlin"
