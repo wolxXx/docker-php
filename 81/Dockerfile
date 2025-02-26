@@ -1,27 +1,6 @@
-#VERSION=1.1
-ARG ubuntuVersion="24.04"
-
-FROM ubuntu:$ubuntuVersion
-
-ARG nodeVersion="22"
+#VERSION=1.3
+FROM wolxxxy/phpbase:latest
 ARG phpVersion="8.1"
-
-RUN apt update && apt install tzdata -y
-ENV TZ="Europe/Berlin"
-
-RUN apt update && apt install -y software-properties-common htop btop curl wget git cron wget curl git vim net-tools bash-completion inetutils-ping unzip
-
-
-RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir './fnm' \
-&& cp ./fnm/fnm /usr/bin && fnm install $nodeVersion
-
-RUN ln -s /root/.local/share/fnm/node-versions/*/installation/bin/* /usr/local/bin/.
-
-RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
-RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/apache2
-
-RUN apt update
-RUN apt dist-upgrade -y
 
 RUN apt install -y \
     apache2 apache2-dev apache2-utils apachetop mysql-client mycli \
@@ -39,11 +18,6 @@ RUN wget https://raw.githubusercontent.com/wolxXx/toolz/main/fixPHP.sh && chmod 
 
 RUN sed -i '/opcache.enable=/c\opcache.enable = 1' "/etc/php/$phpVersion/apache2/php.ini"
 
-
 WORKDIR /var/www
-
-# https://getcomposer.org/doc/03-cli.md#bash-completions: RUN php composer.phar completion bash > /etc/bash_completion.d/composer // get via wget!
-RUN wget https://raw.githubusercontent.com/wolxXx/toolz/main/composer_auto_complete.sh && mv composer_auto_complete.sh /etc/bash_completion.d/composer
-RUN echo ". /etc/bash_completion" >> /root/.bashrc
 
 CMD ["apachectl", "-D", "FOREGROUND"]
