@@ -28,7 +28,7 @@ build(){
 }
 
 for dir in "${directories[@]}"; do
-  build "$dir"
+  build "$dir" &
 done
 
 exit 0;
