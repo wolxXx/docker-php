@@ -13,3 +13,21 @@ or
 image: wolxxxy/php84:1.2
 
 in your docker compose file or in your docker run script
+
+
+links to dockerhub: 
+- https://hub.docker.com/r/wolxxxy/php84
+- https://hub.docker.com/r/wolxxxy/php83
+- https://hub.docker.com/r/wolxxxy/php82
+- https://hub.docker.com/r/wolxxxy/php81
+- https://hub.docker.com/r/wolxxxy/php80
+
+
+- https://hub.docker.com/r/wolxxxy/php74
+- https://hub.docker.com/r/wolxxxy/php73
+- https://hub.docker.com/r/wolxxxy/php72
+- https://hub.docker.com/r/wolxxxy/php71
+- https://hub.docker.com/r/wolxxxy/php70
+
+ 
+- https://hub.docker.com/r/wolxxxy/php56
