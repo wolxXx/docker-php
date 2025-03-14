@@ -11,12 +11,13 @@ RUN apt install -y \
     php$phpVersion-imap php$phpVersion-intl php$phpVersion-mbstring php$phpVersion-mysql php$phpVersion-opcache php$phpVersion-readline \
     php$phpVersion-soap php$phpVersion-tidy php$phpVersion-xml php$phpVersion-xsl php$phpVersion-zip php$phpVersion-xdebug php$phpVersion-xdebug php$phpVersion-imagick
 
-RUN a2enmod headers
-RUN a2enmod rewrite
+RUN a2enmod headers rewrite
 
 RUN wget https://raw.githubusercontent.com/wolxXx/toolz/main/fixPHP.sh && chmod +x fixPHP.sh && ./fixPHP.sh
 
 RUN sed -i '/opcache.enable=/c\opcache.enable = 1' "/etc/php/$phpVersion/apache2/php.ini"
+
+RUN wget https://getcomposer.org/download/latest-stable/composer.phar && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
 
 WORKDIR /var/www
 
