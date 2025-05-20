@@ -6,7 +6,22 @@ FROM ubuntu:$ubuntuVersion
 ARG nodeVersion="22"
 ARG phpVersion="8.4"
 
-RUN apt update && apt install -y tzdata software-properties-common htop btop curl wget git cron wget curl git vim net-tools bash-completion inetutils-ping unzip
+RUN apt update && apt install -y  \
+    bash-completion  \
+    btop  \
+    cron  \
+    curl  \
+    git  \
+    htop  \
+    inetutils-ping  \
+    net-tools  \
+    rsync  \
+    software-properties-common  \
+    tzdata  \
+    unzip \
+    vim  \
+    wget  \
+    wget
 ENV TZ="Europe/Berlin"
 
 
