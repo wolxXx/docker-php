@@ -20,7 +20,6 @@ RUN apt update && apt install -y  \
     tzdata  \
     unzip \
     vim  \
-    wget  \
     wget
 ENV TZ="Europe/Berlin"
 
