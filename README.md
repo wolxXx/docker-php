@@ -16,6 +16,7 @@ in your docker compose file or in your docker run script
 
 
 links to dockerhub: 
+## PHP8X
 - https://hub.docker.com/r/wolxxxy/php85
 - https://hub.docker.com/r/wolxxxy/php84
 - https://hub.docker.com/r/wolxxxy/php83
@@ -23,12 +24,15 @@ links to dockerhub:
 - https://hub.docker.com/r/wolxxxy/php81
 - https://hub.docker.com/r/wolxxxy/php80
 
-
+## PHP7X
 - https://hub.docker.com/r/wolxxxy/php74
 - https://hub.docker.com/r/wolxxxy/php73
 - https://hub.docker.com/r/wolxxxy/php72
 - https://hub.docker.com/r/wolxxxy/php71
 - https://hub.docker.com/r/wolxxxy/php70
 
- 
+## PHP6X
+- https://www.wiley.com/en-us/Professional+PHP6-p-9780470395097
+
+## PHP5X
 - https://hub.docker.com/r/wolxxxy/php56
