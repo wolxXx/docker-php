@@ -16,6 +16,7 @@ in your docker compose file or in your docker run script
 
 
 links to dockerhub: 
+- https://hub.docker.com/r/wolxxxy/php85
 - https://hub.docker.com/r/wolxxxy/php84
 - https://hub.docker.com/r/wolxxxy/php83
 - https://hub.docker.com/r/wolxxxy/php82
