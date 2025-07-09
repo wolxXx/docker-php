@@ -3,8 +3,7 @@ ARG ubuntuVersion="24.04"
 
 FROM ubuntu:$ubuntuVersion
 
-ARG nodeVersion="22"
-ARG phpVersion="8.4"
+ARG nodeVersion="24"
 
 RUN apt update && apt install -y  \
     bash-completion  \
