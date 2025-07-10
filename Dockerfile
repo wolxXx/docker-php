@@ -13,6 +13,7 @@ RUN apt update && apt install -y  \
     git  \
     htop  \
     inetutils-ping  \
+    jq  \
     net-tools  \
     rsync  \
     software-properties-common  \
