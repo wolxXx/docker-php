@@ -3,8 +3,6 @@ ARG ubuntuVersion="24.04"
 
 FROM ubuntu:$ubuntuVersion
 
-ARG nodeVersion="24"
-
 RUN apt update && apt install -y  \
     bash-completion  \
     btop  \
@@ -22,12 +20,6 @@ RUN apt update && apt install -y  \
     vim  \
     wget
 ENV TZ="Europe/Berlin"
-
-
-RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir './fnm' \
-&& cp ./fnm/fnm /usr/bin && fnm install $nodeVersion
-
-RUN ln -s /root/.local/share/fnm/node-versions/*/installation/bin/* /usr/local/bin/.
 
 RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
 RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/apache2

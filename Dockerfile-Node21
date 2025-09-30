@@ -1,0 +1,8 @@
+#VERSION=1.2
+FROM wolxxxy/base:latest
+
+RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir './fnm' \
+&& cp ./fnm/fnm /usr/bin && fnm install 21
+
+RUN ln -s /root/.local/share/fnm/node-versions/*/installation/bin/* /usr/local/bin/.
+

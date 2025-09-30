@@ -7,9 +7,13 @@ set -o pipefail
 HERE=$(dirname $(readlink -f $0));
 cd "$HERE" || exit 1;
 
-directories=("85" "84" "83" "82" "81" "80" "74" "73" "72" "71" "70" "56");
-
-docker build --no-cache --compress -t "wolxxxy/phpbase:1.0" -t "wolxxxy/phpbase:latest" .
+docker build --no-cache --compress -t "wolxxxy/base:1.0" -t "wolxxxy/base:latest" -f Dockerfile-Base .
+docker build --no-cache --compress -t "wolxxxy/phpbase-node20:1.0" -t "wolxxxy/phpbase-node20:latest" -f Dockerfile-Node20 . &
+docker build --no-cache --compress -t "wolxxxy/phpbase-node21:1.0" -t "wolxxxy/phpbase-node21:latest" -f Dockerfile-Node21 . &
+docker build --no-cache --compress -t "wolxxxy/phpbase-node22:1.0" -t "wolxxxy/phpbase-node22:latest" -f Dockerfile-Node22 . &
+docker build --no-cache --compress -t "wolxxxy/phpbase-node23:1.0" -t "wolxxxy/phpbase-node23:latest" -f Dockerfile-Node23 . &
+docker build --no-cache --compress -t "wolxxxy/phpbase-node24:1.0" -t "wolxxxy/phpbase-node24:latest" -t "wolxxxy/phpbase:latest" -f Dockerfile-Node24 .
+wait
 
 build(){
    cd "$HERE" || exit 1;
@@ -26,6 +30,8 @@ build(){
 
    echo "$1 completed.";
 }
+
+directories=($(find . -maxdepth 1 -type d -not -name ".*" -printf "%f\n"))
 
 for dir in "${directories[@]}"; do
   build "$dir" &
