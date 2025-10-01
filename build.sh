@@ -7,12 +7,17 @@ set -o pipefail
 HERE=$(dirname $(readlink -f $0));
 cd "$HERE" || exit 1;
 
+#build base
 docker build --no-cache --compress -t "wolxxxy/base:1.0" -t "wolxxxy/base:latest" -f Dockerfile-Base .
+
+#build node versions in parallel mode
 docker build --no-cache --compress -t "wolxxxy/phpbase-node20:1.0" -t "wolxxxy/phpbase-node20:latest" -f Dockerfile-Node20 . &
 docker build --no-cache --compress -t "wolxxxy/phpbase-node21:1.0" -t "wolxxxy/phpbase-node21:latest" -f Dockerfile-Node21 . &
 docker build --no-cache --compress -t "wolxxxy/phpbase-node22:1.0" -t "wolxxxy/phpbase-node22:latest" -f Dockerfile-Node22 . &
 docker build --no-cache --compress -t "wolxxxy/phpbase-node23:1.0" -t "wolxxxy/phpbase-node23:latest" -f Dockerfile-Node23 . &
-docker build --no-cache --compress -t "wolxxxy/phpbase-node24:1.0" -t "wolxxxy/phpbase-node24:latest" -t "wolxxxy/phpbase:latest" -f Dockerfile-Node24 .
+docker build --no-cache --compress -t "wolxxxy/phpbase-node24:1.0" -t "wolxxxy/phpbase-node24:latest" -t "wolxxxy/phpbase:latest" -f Dockerfile-Node24 . &
+
+#wait for node versions ready
 wait
 
 build(){
@@ -31,8 +36,8 @@ build(){
    echo "$1 completed.";
 }
 
+#run all versions in parallel
 directories=($(find . -maxdepth 1 -type d -not -name ".*" -printf "%f\n"))
-
 for dir in "${directories[@]}"; do
   build "$dir" &
 done
