@@ -1,6 +1,6 @@
 #VERSION=1.3
-FROM wolxxxy/phpbase-node21:latest
-ARG phpVersion="8.4"
+FROM wolxxxy/phpbase-node25:latest
+ARG phpVersion="7.4"
 
 RUN apt install -y \
     apache2 apache2-dev apache2-utils apachetop mysql-client mycli \

@@ -1,5 +1,5 @@
 #VERSION=1.3
-FROM wolxxxy/phpbase-node21:latest
+FROM wolxxxy/phpbase-node20:latest
 ARG phpVersion="8.4"
 
 RUN apt install -y \
