@@ -3,13 +3,36 @@ FROM wolxxxy/phpbase-node20:latest
 ARG phpVersion="8.3"
 
 RUN apt install -y \
-    apache2 apache2-dev apache2-utils apachetop mysql-client mycli \
-    php$phpVersion libapache2-mod-php$phpVersion php$phpVersion-common php$phpVersion-mysql php$phpVersion-gmp php$phpVersion-ldap php$phpVersion-curl \
-    php$phpVersion-xml php$phpVersion-cli php$phpVersion-intl \
-    php$phpVersion-mbstring php$phpVersion-xmlrpc php$phpVersion-gd php$phpVersion-bcmath \
-    php$phpVersion-zip  php$phpVersion php$phpVersion-bcmath php$phpVersion-cli php$phpVersion-curl php$phpVersion-dev php$phpVersion-gd \
-    php$phpVersion-imap php$phpVersion-intl php$phpVersion-mbstring php$phpVersion-mysql php$phpVersion-opcache php$phpVersion-readline \
-    php$phpVersion-soap php$phpVersion-tidy php$phpVersion-xml php$phpVersion-xsl php$phpVersion-zip php$phpVersion-xdebug php$phpVersion-xdebug php$phpVersion-imagick
+    apache2 \
+    apache2-dev \
+    apache2-utils \
+    apachetop \
+    libapache2-mod-php$phpVersion \
+    mycli \
+    mysql-client \
+    php$phpVersion \
+    php$phpVersion-bcmath \
+    php$phpVersion-cli \
+    php$phpVersion-common \
+    php$phpVersion-curl \
+    php$phpVersion-dev \
+    php$phpVersion-gd \
+    php$phpVersion-gmp \
+    php$phpVersion-imagick \
+    php$phpVersion-imap \
+    php$phpVersion-intl \
+    php$phpVersion-ldap \
+    php$phpVersion-mbstring \
+    php$phpVersion-mysql \
+    php$phpVersion-opcache \
+    php$phpVersion-readline \
+    php$phpVersion-soap \
+    php$phpVersion-tidy \
+    php$phpVersion-xdebug \
+    php$phpVersion-xml \
+    php$phpVersion-xmlrpc \
+    php$phpVersion-xsl \
+    php$phpVersion-zip
 
 RUN a2enmod headers rewrite
 
