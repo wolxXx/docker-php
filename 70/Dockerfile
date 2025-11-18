@@ -42,6 +42,9 @@ RUN sed -i '/opcache.enable=/c\opcache.enable = 1' "/etc/php/$phpVersion/apache2
 
 RUN wget https://getcomposer.org/download/latest-2.2.x/composer.phar && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
 
+RUN mkdir -p "/var/log/apache2"
+RUN touch /var/log/apache2/error.log && touch /var/log/apache2/access.log && chmod -R 777 /var/log/apache2
+
 WORKDIR /var/www
 
 CMD ["apachectl", "-D", "FOREGROUND"]
