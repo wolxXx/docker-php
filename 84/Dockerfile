@@ -39,6 +39,8 @@ RUN a2enmod headers rewrite
 RUN wget https://raw.githubusercontent.com/wolxXx/toolz/main/fixPHP.sh && chmod +x fixPHP.sh && ./fixPHP.sh
 
 RUN sed -i '/opcache.enable=/c\opcache.enable = 1' "/etc/php/$phpVersion/apache2/php.ini"
+RUN sed -i '/opcache.jit=/c\opcache.jit=disable' "/etc/php/$phpVersion/apache2/php.ini"
+
 
 RUN wget https://getcomposer.org/download/latest-stable/composer.phar && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
 
