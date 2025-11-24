@@ -24,7 +24,6 @@ RUN apt install -y \
     php$phpVersion-ldap \
     php$phpVersion-mbstring \
     php$phpVersion-mysql \
-    php$phpVersion-opcache \
     php$phpVersion-readline \
     php$phpVersion-soap \
     php$phpVersion-tidy \
