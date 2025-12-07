@@ -27,6 +27,7 @@ RUN apt install -y \
     php$phpVersion-readline \
     php$phpVersion-soap \
     php$phpVersion-tidy \
+    php$phpVersion-xdebug \
     php$phpVersion-xml \
     php$phpVersion-xmlrpc \
     php$phpVersion-xsl \
