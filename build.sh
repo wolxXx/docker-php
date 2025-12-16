@@ -36,11 +36,8 @@ build(){
 
    echo "$1 completed.";
 }
+export -f build
 
-#run all versions in parallel
-directories=($(find . -maxdepth 1 -type d -not -name ".*" -printf "%f\n"))
-for dir in "${directories[@]}"; do
-  build "$dir" &
-done
+find . -maxdepth 1 -type d -not -name ".*" -printf "%f\n" | xargs -P 12 -I {} bash -c 'build "{}"'
 
 exit 0;
