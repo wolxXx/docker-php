@@ -38,6 +38,6 @@ build(){
 }
 export -f build
 
-find . -maxdepth 1 -type d -not -name ".*" -printf "%f\n" | xargs -P 12 -I {} bash -c 'build "{}"'
+find . -maxdepth 1 -type d -not -name ".*" -printf "%f\n" | xargs -P 20 -I {} bash -c 'build "{}"'
 
 exit 0;
