@@ -1,10 +1,15 @@
-#VERSION=0.2.40
+#VERSION=0.2.41
 FROM php:8.5-cli
 
-# Latest releases available at https://github.com/aptible/supercronic/releases
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
+    libzip-dev \
+    && docker-php-ext-install intl mysqli zip \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.40/supercronic-linux-amd64 \
-    SUPERCRONIC_SHA1SUM=8ab9683df4b8287ba1e09923101d6ebf532b6eba \
+# Latest releases available at https://github.com/aptible/supercronic/releases
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.41/supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=f70ad28d0d739a96dc9e2087ae370c257e79b8d7 \
     SUPERCRONIC=supercronic-linux-amd64
 
 RUN curl -fsSLO "$SUPERCRONIC_URL" \
