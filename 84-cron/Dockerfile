@@ -5,7 +5,7 @@ ENV TZ="Europe/Berlin"
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
-    && docker-php-ext-install intl mysqli pdo zip \
+    && docker-php-ext-install intl mysqli pdo pdo_mysql zip \
     && rm -rf /var/lib/apt/lists/*
 
 # Latest releases available at https://github.com/aptible/supercronic/releases
