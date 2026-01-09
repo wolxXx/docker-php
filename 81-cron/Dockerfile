@@ -1,5 +1,6 @@
 #VERSION=0.2.41
 FROM php:8.1-cli
+ENV TZ="Europe/Berlin"
 
 RUN apt-get update && apt-get install -y \
     libicu-dev \
