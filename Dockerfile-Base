@@ -3,21 +3,22 @@ ARG ubuntuVersion="24.04"
 
 FROM ubuntu:$ubuntuVersion
 
-RUN apt update && apt install -y  \
-    bash-completion  \
-    btop  \
-    cron  \
-    curl  \
-    git  \
-    htop  \
-    inetutils-ping  \
-    jq  \
-    net-tools  \
-    rsync  \
-    software-properties-common  \
-    tzdata  \
+RUN apt update && apt install -y \
+    bash-completion \
+    btop \
+    cron \
+    curl \
+    git \
+    htop \
+    inetutils-ping \
+    jq \
+    net-tools \
+    rsync \
+    software-properties-common \
+    tzdata \
     unzip \
-    vim  \
+    vim \
+    watch \
     wget
 ENV TZ="Europe/Berlin"
 

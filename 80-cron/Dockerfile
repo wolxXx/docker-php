@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
     mariadb-client \
+    watch \
     && docker-php-ext-install intl mysqli pdo pdo_mysql zip \
     && rm -rf /var/lib/apt/lists/*
 
