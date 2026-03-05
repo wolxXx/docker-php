@@ -8,15 +8,15 @@ HERE=$(dirname $(readlink -f $0));
 cd "$HERE" || exit 1;
 
 #build base
-docker build --no-cache --compress -t "wolxxxy/base:1.0" -t "wolxxxy/base:latest" -f Dockerfile-Base .
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/base:1.0" -t "wolxxxy/base:latest" -f Dockerfile-Base .
 
 #build node versions in parallel mode
-docker build --no-cache --compress -t "wolxxxy/phpbase-node20:1.0" -t "wolxxxy/phpbase-node20:latest" -f Dockerfile-Node20 . &
-docker build --no-cache --compress -t "wolxxxy/phpbase-node21:1.0" -t "wolxxxy/phpbase-node21:latest" -f Dockerfile-Node21 . &
-docker build --no-cache --compress -t "wolxxxy/phpbase-node22:1.0" -t "wolxxxy/phpbase-node22:latest" -f Dockerfile-Node22 . &
-docker build --no-cache --compress -t "wolxxxy/phpbase-node23:1.0" -t "wolxxxy/phpbase-node23:latest" -f Dockerfile-Node23 . &
-docker build --no-cache --compress -t "wolxxxy/phpbase-node24:1.0" -t "wolxxxy/phpbase-node24:latest" -f Dockerfile-Node24 . &
-docker build --no-cache --compress -t "wolxxxy/phpbase-node25:1.0" -t "wolxxxy/phpbase-node25:latest" -t "wolxxxy/phpbase:latest" -f Dockerfile-Node25 . &
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/phpbase-node20:1.0" -t "wolxxxy/phpbase-node20:latest" -f Dockerfile-Node20 . &
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/phpbase-node21:1.0" -t "wolxxxy/phpbase-node21:latest" -f Dockerfile-Node21 . &
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/phpbase-node22:1.0" -t "wolxxxy/phpbase-node22:latest" -f Dockerfile-Node22 . &
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/phpbase-node23:1.0" -t "wolxxxy/phpbase-node23:latest" -f Dockerfile-Node23 . &
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/phpbase-node24:1.0" -t "wolxxxy/phpbase-node24:latest" -f Dockerfile-Node24 . &
+docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/phpbase-node25:1.0" -t "wolxxxy/phpbase-node25:latest" -t "wolxxxy/phpbase:latest" -f Dockerfile-Node25 . &
 
 #wait for node versions ready
 wait
@@ -30,7 +30,7 @@ build(){
    VERSION=$(head -n 1 "Dockerfile" | cut -d '=' -f2)
    echo "Version found in $VERSION"
 
-   docker build --no-cache --compress -t "wolxxxy/php$1:$VERSION" -t "wolxxxy/php$1:latest"  .
+   docker build --platform linux/amd64,linux/arm64 --no-cache --compress -t "wolxxxy/php$1:$VERSION" -t "wolxxxy/php$1:latest"  .
    docker push "wolxxxy/php$1:$VERSION"
    docker push "wolxxxy/php$1:latest"
 
