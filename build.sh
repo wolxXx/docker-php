@@ -18,6 +18,7 @@ docker build --no-cache --compress -t "wolxxxy/phpbase-node23:1.0" -t "wolxxxy/p
 docker build --no-cache --compress -t "wolxxxy/phpbase-node24:1.0" -t "wolxxxy/phpbase-node24:latest" -f Dockerfile-Node24 . &
 docker build --no-cache --compress -t "wolxxxy/phpbase-node25:1.0" -t "wolxxxy/phpbase-node25:latest" -f Dockerfile-Node25 . &
 docker build --no-cache --compress -t "wolxxxy/phpbase-node26:1.0" -t "wolxxxy/phpbase-node26:latest" -t "wolxxxy/phpbase:latest" -f Dockerfile-Node26 . &
+docker build --no-cache --compress -t "wolxxxy/phpbase-node27:1.0" -t "wolxxxy/phpbase-node27:latest" -f Dockerfile-Node27 . &
 
 #wait for node versions ready
 wait
