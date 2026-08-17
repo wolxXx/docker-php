@@ -49,7 +49,7 @@ EOF
 }
 
 PUSH=1
-PARALLEL=30
+PARALLEL=20
 while [ $# -gt 0 ]; do
     case "$1" in
         --no-push) PUSH=0; shift ;;
