@@ -1,0 +1,16 @@
+*
+!Dockerfile-Base
+!Dockerfile-Node20
+!Dockerfile-Node21
+!Dockerfile-Node22
+!Dockerfile-Node23
+!Dockerfile-Node24
+!Dockerfile-Node25
+!Dockerfile-Node26
+!Dockerfile-Node27
+!assets
+!assets/**
+!??
+!??-*
+!??/Dockerfile
+!??-*/Dockerfile

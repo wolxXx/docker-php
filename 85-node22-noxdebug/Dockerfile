@@ -34,11 +34,13 @@ RUN apt install -y \
 
 RUN a2enmod headers rewrite
 
-RUN wget https://raw.githubusercontent.com/wolxXx/toolz/main/fixPHP.sh && chmod +x fixPHP.sh && ./fixPHP.sh
+COPY assets/fixPHP.sh /usr/local/bin/fixPHP.sh
+RUN chmod +x /usr/local/bin/fixPHP.sh && /usr/local/bin/fixPHP.sh
 
 RUN sed -i '/opcache.enable=/c\opcache.enable = 1' "/etc/php/$phpVersion/apache2/php.ini"
 
-RUN wget https://getcomposer.org/download/latest-stable/composer.phar && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
+COPY assets/composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
 
 RUN mkdir -p "/var/log/apache2"
 RUN touch /var/log/apache2/error.log && touch /var/log/apache2/access.log && chmod -R 777 /var/log/apache2

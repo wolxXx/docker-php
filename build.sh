@@ -76,6 +76,41 @@ while [ $# -gt 0 ]; do
 done
 export PUSH
 
+#fetch shared assets once
+mkdir -p assets
+echo "Fetching shared assets..."
+
+# Load GitHub token from project root (not committed) to authenticate GitHub API
+# requests and avoid the low unauthenticated rate limit (429 Too Many Requests).
+GITHUB_TOKEN_FILE="$HERE/.github_token"
+if [ ! -f "$GITHUB_TOKEN_FILE" ]; then
+    echo "ERROR: GitHub token file not found at $GITHUB_TOKEN_FILE" >&2
+    echo "Create it with a personal access token (contents:read scope), e.g.:" >&2
+    echo "  echo 'ghp_xxx...' > $GITHUB_TOKEN_FILE && chmod 600 $GITHUB_TOKEN_FILE" >&2
+    exit 1
+fi
+GITHUB_TOKEN=$(tr -d ' \t\r\n' < "$GITHUB_TOKEN_FILE")
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo "ERROR: GitHub token file $GITHUB_TOKEN_FILE is empty." >&2
+    exit 1
+fi
+
+fetch_github() {
+    # $1 = dest path, $2 = repo (owner/name), $3 = path in repo, $4 = branch/ref
+    curl -fsSL \
+        -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github.raw" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        -o "$1" \
+        "https://api.github.com/repos/$2/contents/$3?ref=$4"
+}
+
+fetch_github assets/composer_auto_complete.sh wolxXx/toolz composer_auto_complete.sh main
+fetch_github assets/fixPHP.sh                 wolxXx/toolz fixPHP.sh                 main
+wget -q -O assets/composer.phar     https://getcomposer.org/download/latest-stable/composer.phar
+wget -q -O assets/composer-2.2.phar https://getcomposer.org/download/latest-2.2.x/composer.phar
+chmod +x assets/fixPHP.sh assets/composer.phar assets/composer-2.2.phar
+
 #build base
 docker build --no-cache --compress -t "wolxxxy/base:1.0" -t "wolxxxy/base:latest" -f Dockerfile-Base .
 
@@ -94,14 +129,13 @@ wait
 
 build(){
    cd "$HERE" || exit 1;
-   cd "$1" || exit 1;
 
    echo "Processing $1..."
 
-   VERSION=$(head -n 1 "Dockerfile" | cut -d '=' -f2)
+   VERSION=$(head -n 1 "$1/Dockerfile" | cut -d '=' -f2)
    echo "Version found in $VERSION"
 
-   docker build --no-cache --compress -t "wolxxxy/php$1:$VERSION" -t "wolxxxy/php$1:latest"  .
+   docker build --no-cache --compress -t "wolxxxy/php$1:$VERSION" -t "wolxxxy/php$1:latest" -f "$1/Dockerfile" .
    if [ "$PUSH" = "1" ]; then
        docker push "wolxxxy/php$1:$VERSION"
        docker push "wolxxxy/php$1:latest"
